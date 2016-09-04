@@ -6,27 +6,19 @@ package track;
 public class Main {
 
     public static void main(String[] args) {
-        City dnepr = new City();
-        City kiev = new City();
-        City lviv = new City();
-        City varshava = new City();
 
-        dnepr.createCity("Dnepr", 1_000_000);
-        kiev.createCity("Kiev", 3_000_000);
-        lviv.createCity("Lviv", 700_000);
-        warshawa.createCity("Varshava", 2_000_000);
+        Main main = new Main();
 
-        Route dneprKievRoute = new Route();
-        Route kievDneprRoute = new Route();
-        Route dneprLvivRoute = new Route();
-        Route lvivDneprRoute = new Route();
-        Route dneprWarshawaRoute = new Route();
+        City dnepr = main.createCity("Dnepr", 1_000_000);
+        City kiev = main.createCity("Kiev", 3_000_000);
+        City lviv = main.createCity("Lviv", 700_000);
+        City warshawa = main.createCity("Varshava", 2_000_000);
 
-        Route dneprKievRoute = dneprKievRoute.createRoute(dnepr, kiev, 500);
-        Route kievDneprRoute = kievDneprRoute.createRoute(kiev, dnepr, 500);
-        Route dneprLvivRoute = dneprLvivRoute.createRoute(dnepr, lviv, 900);
-        Route lvivDneprRoute = lvivDneprRoute.createRoute(lviv, dnepr, 900);
-        Route dneprWarshawaRoute = dneprWarshawaRoute.createRoute(dnepr, warshawa, 1300);
+        Route dneprKievRoute = main.createRoute(dnepr, kiev, 500);
+        Route kievDneprRoute = main.createRoute(kiev, dnepr, 500);
+        Route dneprLvivRoute = main.createRoute(dnepr, lviv, 900);
+        Route lvivDneprRoute = main.createRoute(lviv, dnepr, 900);
+        Route dneprWarshawaRoute = main.createRoute(dnepr, warshawa, 1300);
 
         Track track = new Track();
         track.setName("Volvo");
@@ -43,14 +35,14 @@ public class Main {
     }
 
     private City createCity(String name, int population) {
-
+        City city = new City();
         city.setName(name);
         city.setPopulation(population);
         return city;
     }
 
     private Route createRoute(City fromCity, City toCity, int distance) {
-
+        Route route = new Route();
         route.setFromCity(fromCity);
         route.setToCity(toCity);
         route.setDistance(distance);
