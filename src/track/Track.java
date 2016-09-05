@@ -8,54 +8,18 @@ public class Track {
     private int consumption;
     private String name;
     private City currentCity;
-    private int refill;
-    private int sum;
+    private int sumDistance;
 
-    public int move(Route route) {
+    ServiceTrack serviceTrack = new ServiceTrack();
 
-        if (tank>10)
-        tank = tank - petrolConsumpted(route);
-        else
-            filling(route);
+    public void move(Route route) {
+
         currentCity = route.getToCity();
-        return tank;}
-
-    public int filling(Route route) {
-            refill = 100 - tank;
-        tank += refill;
-        return tank;
-        }
-
-    public int sumDistance (Route route) {
-        sum += route.getDistance();
-        return sum; }
+        sumDistance += route.getDistance();
+    }
 
     public int petrolConsumpted(Route route) {
         return route.getDistance()/getConsumption();
-    }
-
-    public int getRefill() {
-        return refill;
-    }
-
-    public void setRefill(int refill) {
-        this.refill = refill;
-    }
-
-    public City getCurrentCity() {
-        return currentCity;
-    }
-
-    public int getSum() {
-        return sum;
-    }
-
-    public void setSum(int sum) {
-        this.sum = sum;
-    }
-
-    public void setCurrentCity(City currentCity) {
-        this.currentCity = currentCity;
     }
 
     public int getTank() {
@@ -64,6 +28,22 @@ public class Track {
 
     public void setTank(int tank) {
         this.tank = tank;
+    }
+
+    public City getCurrentCity() {
+        return currentCity;
+    }
+
+    public void setCurrentCity(City currentCity) {
+        this.currentCity = currentCity;
+    }
+
+    public int getSumDistance() {
+        return sumDistance;
+    }
+
+    public void setSumDistance(int sumDistance) {
+        this.sumDistance = sumDistance;
     }
 
     public int getConsumption() {
@@ -89,9 +69,9 @@ public class Track {
     public String toString() {
         return "Track{" +
                 "tank=" + tank +
-                ", full distance=" + sum +
+                ", full distance=" + sumDistance +
                 ", consumption=" + consumption +
-                ", full refill=" + refill +
+                ", full refill=" + serviceTrack.getPetrolRefill() +
                 ", name='" + name + '\'' +
                 ", currentCity=" + currentCity +
                 '}';

@@ -26,11 +26,12 @@ public class Main {
         track.setConsumption(10);
         track.setCurrentCity(dnepr);
 
+        ServiceTrack serviceTrack = new ServiceTrack();
+
         System.out.println(track);
         System.out.println("Track moved: ");
         track.move(dneprKievRoute);
-        track.filling(dneprKievRoute);
-        track.sumDistance(dneprKievRoute);
+        serviceTrack.petrolFilling(dneprKievRoute);
         System.out.println(track);
     }
 
