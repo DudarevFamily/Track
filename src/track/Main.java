@@ -26,12 +26,14 @@ public class Main {
         track.setConsumption(10);
         track.setCurrentCity(dnepr);
 
-        ServiceTrack serviceTrack = new ServiceTrack();
+        TrackService trackService = new TrackService();
 
         System.out.println(track);
         System.out.println("Track moved: ");
-        track.move(dneprKievRoute);
-        serviceTrack.petrolFilling(dneprKievRoute);
+        trackService.move(dneprKievRoute, track);
+        trackService.petrolResidue(dneprKievRoute, track);
+        trackService.counterPath(dneprKievRoute, track);
+        trackService.petrolFilling(dneprKievRoute, track);
         System.out.println(track);
     }
 
@@ -49,5 +51,4 @@ public class Main {
         route.setDistance(distance);
         return route;
     }
-
 }

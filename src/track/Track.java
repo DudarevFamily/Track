@@ -4,22 +4,30 @@ package track;
  * Created by Sergey on 28.08.16.
  */
 public class Track {
+
     private int tank;
     private int consumption;
     private String name;
     private City currentCity;
     private int sumDistance;
+    private int currentPetrol;
+    private int petrolRefill;
 
-    ServiceTrack serviceTrack = new ServiceTrack();
 
-    public void move(Route route) {
-
-        currentCity = route.getToCity();
-        sumDistance += route.getDistance();
+    public int getCurrentPetrol() {
+        return currentPetrol;
     }
 
-    public int petrolConsumpted(Route route) {
-        return route.getDistance()/getConsumption();
+    public void setCurrentPetrol(int currentPetrol) {
+        this.currentPetrol = currentPetrol;
+    }
+
+    public int getPetrolRefill() {
+        return petrolRefill;
+    }
+
+    public void setPetrolRefill(int petrolRefill) {
+        this.petrolRefill = petrolRefill;
     }
 
     public int getTank() {
@@ -71,10 +79,9 @@ public class Track {
                 "tank=" + tank +
                 ", full distance=" + sumDistance +
                 ", consumption=" + consumption +
-                ", full refill=" + serviceTrack.getPetrolRefill() +
+                ", full refill=" + petrolRefill +
                 ", name='" + name + '\'' +
                 ", currentCity=" + currentCity +
                 '}';
     }
-
 }
