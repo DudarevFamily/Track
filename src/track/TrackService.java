@@ -8,24 +8,24 @@ public class TrackService {
 
     public int petrolFilling(Route route, Track track) {
 
-        track.getPetrolRefill() = petrolConsumpted(route, track);
+        track.setPetrolRefill(petrolConsumpted(route, track));
         return track.getPetrolRefill();
     }
 
     public int petrolResidue(Route route, Track track) {
-        track.getCurrentPetrol() = track.getTank() - petrolConsumpted(route, track);
+        track.setCurrentPetrol(track.getTank() - petrolConsumpted(route, track));
         return track.getCurrentPetrol();
     }
 
     public City move(Route route, Track track) {
 
-        track.getCurrentCity() = route.getToCity();
+        track.setCurrentCity(route.getToCity());
         return track.getCurrentCity();
     }
 
     public int counterPath(Route route, Track track) {
 
-        track.getSumDistance() += route.getDistance();
+        track.setSumDistance(track.getSumDistance()+ route.getDistance());
         return track.getSumDistance();
     }
 

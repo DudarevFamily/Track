@@ -30,10 +30,10 @@ public class Main {
 
         System.out.println(track);
         System.out.println("Track moved: ");
-        trackService.move(dneprKievRoute, track);
-        trackService.petrolResidue(dneprKievRoute, track);
-        trackService.counterPath(dneprKievRoute, track);
-        trackService.petrolFilling(dneprKievRoute, track);
+        trackService.move(dneprLvivRoute, track);
+        trackService.petrolResidue(dneprLvivRoute, track);
+        trackService.counterPath(dneprLvivRoute, track);
+        trackService.petrolFilling(dneprLvivRoute, track);
         System.out.println(track);
     }
 
