@@ -10,25 +10,6 @@ public class Track {
     private String name;
     private City currentCity;
     private int sumDistance;
-    private int currentPetrol;
-    private int petrolRefill;
-
-
-    public int getCurrentPetrol() {
-        return currentPetrol;
-    }
-
-    public void setCurrentPetrol(int currentPetrol) {
-        this.currentPetrol = currentPetrol;
-    }
-
-    public int getPetrolRefill() {
-        return petrolRefill;
-    }
-
-    public void setPetrolRefill(int petrolRefill) {
-        this.petrolRefill = petrolRefill;
-    }
 
     public int getTank() {
         return tank;
@@ -75,13 +56,11 @@ public class Track {
 
     @Override
     public String toString() {
-        return "Track{" +
+        return "Track {" +
                 "tank=" + tank +
                 ", full distance=" + sumDistance +
                 ", consumption=" + consumption +
-                ", full refill=" + petrolRefill +
                 ", name='" + name + '\'' +
-                ", currentCity=" + currentCity +
-                '}';
+                ", currentCity= " + currentCity+"}";
     }
 }
