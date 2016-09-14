@@ -13,26 +13,31 @@ public class TrackService {
      * Расходуем бензин на поездку, в конечном городе текущий уровень бензина равен 0.
      **/
     public int petrolFilling(Route route, Track track) {
-
-        petrolConsumpted(route, track);
-        track.getCurrentPetrol();
-        if (track.getCurrentPetrol()>=petrolConsumpted(route, track))
-            return 0;
-         else {
-            track.setCurrentPetrol(track.getCurrentPetrol() + (petrolConsumpted(route, track) - track.getCurrentPetrol()));
-            track.setCurrentPetrol(petrolConsumpted(route, track) - track.getCurrentPetrol());
+        int petrolNeeded = petrolConsumpted(route, track);
+        int currentPetrol = track.getCurrentPetrol();
+        int petrolRefueled;
+        if (currentPetrol >= petrolNeeded) {
+            petrolRefueled = 0;
+        } else {
+            petrolRefueled = petrolNeeded - currentPetrol;
+            track.setCurrentPetrol(currentPetrol + petrolRefueled);
         }
-            return track.getCurrentPetrol();
+        return petrolRefueled;
     }
 
     public City move(Route route, Track track) {
-
         track.setCurrentCity(route.getToCity());
-
+        calculateSumDistance(route, track);
+        int currentPetrol = track.getCurrentPetrol();
+        int petrolNeeded = petrolConsumpted(route, track);
+        track.setCurrentPetrol(currentPetrol - petrolNeeded);
+        System.out.println("Track '" + track.getName() + "' moved from " + route.getFromCity().getName() +
+                " to " + route.getToCity().getName() + ". Petrol consumpted: " + petrolNeeded + " litres. " +
+                "Total distance: " + track.getSumDistance() + " km.");
         return track.getCurrentCity();
     }
 
-    public int calculatorSumDistance(Route route, Track track) {
+    public int calculateSumDistance(Route route, Track track) {
         track.setSumDistance(track.getSumDistance() + route.getDistance());
         return track.getSumDistance();
     }

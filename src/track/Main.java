@@ -30,19 +30,17 @@ public class Main {
         Route dneprVarshavaRoute = main.createRoute(dnepr, varshava, 1300);
         Route varshavaDneprRoute = main.createRoute(varshava, dnepr, 1300);
 
-        System.out.println(track);
-        System.out.println("Track moved: ");
-        trackService.petrolFilling(dneprKievRoute, track);
-        trackService.move(dneprKievRoute, track);
-        trackService.calculatorSumDistance(dneprKievRoute, track);
-        trackService.petrolFilling(kievDneprRoute, track);
-        trackService.move(kievDneprRoute, track);
-        trackService.calculatorSumDistance(kievDneprRoute, track);
-        trackService.petrolFilling(dneprLvivRoute, track);
-        trackService.move(dneprLvivRoute, track);
-        trackService.calculatorSumDistance(dneprLvivRoute, track);
+        int totalPetrolRefuelled = 0;
 
         System.out.println(track);
+        totalPetrolRefuelled += trackService.petrolFilling(dneprKievRoute, track);
+        trackService.move(dneprKievRoute, track);
+        totalPetrolRefuelled += trackService.petrolFilling(kievDneprRoute, track);
+        trackService.move(kievDneprRoute, track);
+        totalPetrolRefuelled += trackService.petrolFilling(dneprLvivRoute, track);
+        trackService.move(dneprLvivRoute, track);
+        System.out.println(track);
+        System.out.println("Total patrol refuelled: " + totalPetrolRefuelled + " litres.");
     }
 
     private City createCity(String name, int population) {
