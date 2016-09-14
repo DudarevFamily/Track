@@ -5,48 +5,39 @@ package track;
  */
 public class TrackService {
 
-    int petrolRefill;
     /**
-     * Мы должны заправить бензин до начала движения.
-     * Мы должны знать  максимальное расстояние движения с полным баком бензина.
-     * Если бензина хватает на весь роут - мы заправляемся в конечном городе, если нет - дозаправляемся до полного бака.
-     * В конечном городе заправляемся до полного бака.
+     * Узнаем сколько надо бензина на поездку.
+     * Узнаем текущий уровень бензина в машине.
+     * Сравниваем достаточно ли текущего уровня бензина для поездки. Если да - возвращаем 0.
+     * Если нет - вычисляем разницу недостающего бензина и прибавляем ее к текущему уровню.
+     * Расходуем бензин на поездку, в конечном городе текущий уровень бензина равен 0.
      **/
     public int petrolFilling(Route route, Track track) {
-        petrolRefill = track.getTank();
-        int maxDistance = track.getConsumption() * petrolRefill;
-        if (maxDistance > route.getDistance()) {
-            petrolRefill += petrolConsumpted(route, track);
-        } else {
-            petrolRefill = track.getTank();
-            petrolRefill += petrolConsumpted(route, track);
+
+        petrolConsumpted(route, track);
+        track.getCurrentPetrol();
+        if (track.getCurrentPetrol()>=petrolConsumpted(route, track))
+            return 0;
+         else {
+            track.setCurrentPetrol(track.getCurrentPetrol() + (petrolConsumpted(route, track) - track.getCurrentPetrol()));
+            track.setCurrentPetrol(petrolConsumpted(route, track) - track.getCurrentPetrol());
         }
-        return petrolRefill;
+            return track.getCurrentPetrol();
     }
 
-     // Движение начинаем после заправки машины.
-
     public City move(Route route, Track track) {
-        track.setCurrentCity(route.getFromCity());
-        if(petrolRefill>0) {
-            track.setCurrentCity(route.getToCity());
-        }
+
+        track.setCurrentCity(route.getToCity());
+
         return track.getCurrentCity();
     }
 
-    public int counterPath(Route route, Track track) {
+    public int calculatorSumDistance(Route route, Track track) {
         track.setSumDistance(track.getSumDistance() + route.getDistance());
         return track.getSumDistance();
     }
+
     public int petrolConsumpted(Route route, Track track) {
         return route.getDistance() / track.getConsumption();
-    }
-
-    public int getPetrolRefill() {
-        return petrolRefill;
-    }
-
-    public void setPetrolRefill(int petrolRefill) {
-        this.petrolRefill = petrolRefill;
     }
 }

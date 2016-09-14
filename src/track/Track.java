@@ -5,18 +5,27 @@ package track;
  */
 public class Track {
 
-    private int tank;
+    private int maxTank;
     private int consumption;
     private String name;
     private City currentCity;
     private int sumDistance;
+    private int currentPetrol;
 
-    public int getTank() {
-        return tank;
+    public int getMaxTank() {
+        return maxTank;
     }
 
-    public void setTank(int tank) {
-        this.tank = tank;
+    public void setMaxTank(int maxTank) {
+        this.maxTank = maxTank;
+    }
+
+    public int getCurrentPetrol() {
+        return currentPetrol;
+    }
+
+    public void setCurrentPetrol(int currentPetrol) {
+        this.currentPetrol = currentPetrol;
     }
 
     public City getCurrentCity() {
@@ -57,10 +66,13 @@ public class Track {
     @Override
     public String toString() {
         return "Track {" +
-                "tank=" + tank +
+                "tank max=" + maxTank +
                 ", full distance=" + sumDistance +
                 ", consumption=" + consumption +
+                ", current pertol=" + currentPetrol +
                 ", name='" + name + '\'' +
                 ", currentCity= " + currentCity+"}";
     }
+
+
 }

@@ -16,9 +16,10 @@ public class Main {
 
         Track track = new Track();
         track.setName("Volvo");
-        track.setTank(100);
+        track.setMaxTank(100);
         track.setConsumption(10);
         track.setCurrentCity(dnepr);
+        track.setCurrentPetrol(10);
 
         TrackService trackService = new TrackService();
 
@@ -29,14 +30,19 @@ public class Main {
         Route dneprVarshavaRoute = main.createRoute(dnepr, varshava, 1300);
         Route varshavaDneprRoute = main.createRoute(varshava, dnepr, 1300);
 
-
         System.out.println(track);
         System.out.println("Track moved: ");
-        trackService.petrolFilling(varshavaDneprRoute, track);
-        trackService.move(varshavaDneprRoute, track);
-        trackService.counterPath(varshavaDneprRoute, track);
+        trackService.petrolFilling(dneprKievRoute, track);
+        trackService.move(dneprKievRoute, track);
+        trackService.calculatorSumDistance(dneprKievRoute, track);
+        trackService.petrolFilling(kievDneprRoute, track);
+        trackService.move(kievDneprRoute, track);
+        trackService.calculatorSumDistance(kievDneprRoute, track);
+        trackService.petrolFilling(dneprLvivRoute, track);
+        trackService.move(dneprLvivRoute, track);
+        trackService.calculatorSumDistance(dneprLvivRoute, track);
 
-        System.out.println(track+", petrol refill="+trackService.getPetrolRefill());
+        System.out.println(track);
     }
 
     private City createCity(String name, int population) {
